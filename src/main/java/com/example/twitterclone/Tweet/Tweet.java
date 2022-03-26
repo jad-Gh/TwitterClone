@@ -22,4 +22,8 @@ public class Tweet {
 
     @Column(nullable = false)
     LocalDateTime createdAt;
+
+    public Tweet(String text){
+        this.text = text;
+    }
 }

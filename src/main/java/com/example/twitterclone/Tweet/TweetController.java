@@ -20,10 +20,11 @@ public class TweetController {
     @GetMapping()
     public ResponseEntity<Map<String,Object>> getTweets(@RequestParam(value = "page",defaultValue = "0") int page,
                                                         @RequestParam(value = "size",defaultValue = "10") int size,
-                                                        @RequestParam(value = "minDate",defaultValue = "1970-12-03T10:15:30") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)   LocalDateTime minDate,
-                                                        @RequestParam(value = "maxDate", defaultValue = "#{T(java.time.LocalDateTime).now()}") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)   LocalDateTime maxDate,
+                                                        @RequestParam(value = "minDate",defaultValue = "1970-12-03T10:15:30")
+                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)   LocalDateTime minDate,
+                                                        @RequestParam(value = "maxDate", defaultValue = "#{T(java.time.LocalDateTime).now()}")
+                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)   LocalDateTime maxDate,
                                                         @RequestParam(value = "text",defaultValue = "") String text
-
                                                  ){
         return ResponseEntity.ok().body(tweetService.getTweets(text,size,page,minDate,maxDate));
     }
