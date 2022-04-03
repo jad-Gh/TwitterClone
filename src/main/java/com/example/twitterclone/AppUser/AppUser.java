@@ -1,5 +1,6 @@
 package com.example.twitterclone.AppUser;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -19,33 +21,34 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long Id;
+    private Long Id;
 
     @Column(unique = true,nullable = false)
-    String UserName;
+    private String userName;
     @Column(unique = true,nullable = false)
     @Email
-    String email;
+    private String email;
     @Column(nullable = false)
-    String fullName;
+    private String fullName;
     @Column(unique = true,nullable = false)
     @Pattern(regexp = "^[0-9]+$")
     @Size(min = 6)
-    String phoneNumber;
+    private String phoneNumber;
     @Column(nullable = false)
     @Size(min = 6)
-    String password;
+    private String password;
     @Column(nullable = false)
-    String country;
+    private String country;
     @Column(nullable = false)
-    LocalDate DOB;
+    @JsonProperty("DOB")
+    private LocalDate DOB;
 
-    String profilePicture;
-    String Description;
+    private String profilePicture;
+    private String description;
 
     @Column(nullable = false)
-    boolean enabled;
+    private boolean enabled;
     @Column(nullable = false,updatable = false)
-    LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
 }
