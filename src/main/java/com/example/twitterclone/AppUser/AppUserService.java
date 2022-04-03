@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class AppUserService {
     public void addUser(AppUser appUser){
         appUser.setCreatedAt(LocalDateTime.now());
         appUser.setEnabled(false);
+        appUser.setPassword(new BCryptPasswordEncoder().encode(appUser.getPassword()));
 
         appUserRepository.save(appUser);
     }
@@ -33,6 +35,7 @@ public class AppUserService {
     public void editUser(AppUser appUser){
         appUserRepository.findById(appUser.getId()).orElseThrow(()-> new UsernameNotFoundException("User Not Found"));
 
+        appUser.setPassword(new BCryptPasswordEncoder().encode(appUser.getPassword()));
         appUserRepository.save(appUser);
     }
 
