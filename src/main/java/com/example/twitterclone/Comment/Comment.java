@@ -2,6 +2,8 @@ package com.example.twitterclone.Comment;
 
 
 import com.example.twitterclone.AppUser.AppUser;
+import com.example.twitterclone.Tweet.Tweet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,5 +30,10 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     AppUser owningUser;
+
+    @ManyToOne
+    @JoinColumn(name = "tweet_id")
+    @JsonIgnore
+    Tweet tweet;
 
 }
