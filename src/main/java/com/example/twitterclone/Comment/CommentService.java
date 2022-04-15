@@ -28,7 +28,7 @@ public class CommentService {
 
         Tweet tweet = tweetRepository.findById(tweetId).orElseThrow(()->new RuntimeException("Tweet not found"));
 
-        comment.setOwningUser(appUser);
+        comment.setCommentingUser(appUser);
         comment.setTweet(tweet);
 
         commentRepository.save(comment);

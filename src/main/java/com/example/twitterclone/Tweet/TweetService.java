@@ -1,11 +1,14 @@
 package com.example.twitterclone.Tweet;
 
+import com.example.twitterclone.AppUser.AppUser;
+import com.example.twitterclone.AppUser.AppUserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,9 +20,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class TweetService {
     private final TweetRepository tweetRepo;
+    private final AppUserRepository appUserRepository;
 
-    public void createTweet(Tweet tweet){
+    public void createTweet(String text,Long userId){
+        Tweet tweet =new Tweet();
+        tweet.setText(text);
         tweet.setCreatedAt(LocalDateTime.now());
+
+        AppUser appUser = appUserRepository.findById(userId).orElseThrow(()->new UsernameNotFoundException("User not found"));
+        tweet.setTweetedUser(appUser);
         tweetRepo.save(tweet);
     }
 

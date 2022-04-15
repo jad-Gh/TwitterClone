@@ -3,7 +3,9 @@ package com.example.twitterclone.Comment;
 
 import com.example.twitterclone.AppUser.AppUser;
 import com.example.twitterclone.Tweet.Tweet;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Comment {
 
     @Id
@@ -29,7 +35,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    AppUser owningUser;
+    AppUser commentingUser;
 
     @ManyToOne
     @JoinColumn(name = "tweet_id")

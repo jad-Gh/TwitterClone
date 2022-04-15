@@ -2,6 +2,9 @@ package com.example.twitterclone.Tweet;
 
 
 import com.example.twitterclone.CustomResponse.CustomResponse;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -36,8 +39,8 @@ public class TweetController {
     }
 
     @PostMapping(path = "/create")
-    public ResponseEntity<CustomResponse> postTweet(@RequestBody Tweet tweet){
-        tweetService.createTweet(tweet);
+    public ResponseEntity<CustomResponse> postTweet(@RequestBody PostTweetInput postTweetInput){
+        tweetService.createTweet(postTweetInput.getText(),postTweetInput.getUserId());
         return ResponseEntity.ok().body( CustomResponse.builder()
                                                             .timeStamp(LocalDateTime.now())
                                                             .status(HttpStatus.OK)
@@ -54,4 +57,12 @@ public class TweetController {
                 .message("Tweet Deleted SuccessFully").build()
         );
     }
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class PostTweetInput {
+    Long userId;
+    String text;
 }
