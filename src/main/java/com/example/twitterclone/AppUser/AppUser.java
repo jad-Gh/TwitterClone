@@ -61,13 +61,6 @@ public class AppUser {
     @OneToMany(mappedBy = "tweetedUser")
     private List<Tweet> tweets;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable( name = "followers",joinColumns = @JoinColumn(name = "owner_id"),inverseJoinColumns = @JoinColumn(name="follower_id"))
-//    private Set<AppUser> followers;
-//
-//    @ManyToMany(mappedBy = "followers")
-//    private Set<AppUser> following;
-
     private String profilePicture;
 
     private String description;
@@ -78,11 +71,5 @@ public class AppUser {
     @Column(nullable = false,updatable = false)
     private LocalDateTime createdAt;
 
-//    public void followAUser(AppUser toFollow){
-//        //owner follows he toFollow
-//        this.following.add(toFollow);
-//        //the other user can see owner as a follower
-//        toFollow.followers.add(this);
-//    }
 
 }
