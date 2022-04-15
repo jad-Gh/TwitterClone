@@ -2,6 +2,8 @@ package com.example.twitterclone.AppUser;
 
 import com.example.twitterclone.CustomResponse.CustomResponse;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -63,4 +65,23 @@ public class AppUserController {
         );
     }
 
+//    @PostMapping("/follow")
+//    public ResponseEntity<CustomResponse> follow(@RequestBody FollowInput followInput){
+//        appUserService.follow(followInput.getUserId(),followInput.getToFollowId());
+//        return ResponseEntity.ok().body(CustomResponse.builder()
+//                .timeStamp(LocalDateTime.now())
+//                .status(HttpStatus.OK)
+//                .statusCode(HttpStatus.OK.value())
+//                .message("User followed Successfully").build()
+//        );
+//    }
+
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class FollowInput{
+    private Long userId;
+    private Long toFollowId;
 }

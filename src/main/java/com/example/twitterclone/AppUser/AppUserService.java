@@ -54,4 +54,10 @@ public class AppUserService {
 
     }
 
+//    public void follow(Long userId,Long followId){
+//        AppUser user = appUserRepository.findById(userId).orElseThrow(()->new UsernameNotFoundException("User not found"));
+//        AppUser toFollow = appUserRepository.findById(followId).orElseThrow(()->new UsernameNotFoundException("User not found"));
+//        user.followAUser(toFollow);
+//    }
+
 }
