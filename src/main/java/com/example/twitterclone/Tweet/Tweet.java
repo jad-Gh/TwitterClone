@@ -2,8 +2,8 @@ package com.example.twitterclone.Tweet;
 
 import com.example.twitterclone.AppUser.AppUser;
 import com.example.twitterclone.Comment.Comment;
+import com.example.twitterclone.Like.LkClass;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,20 +25,23 @@ public class Tweet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    String text;
+    private String text;
 
     @Column(nullable = false)
-    LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "tweet")
-    List<Comment> commentList;
+    private List<Comment> commentList;
     
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    AppUser tweetedUser;
+    private AppUser tweetedUser;
+
+    @OneToMany(mappedBy = "lkdTweet")
+    private List<LkClass> lkList;
 
     public Tweet(String text){
         this.text = text;

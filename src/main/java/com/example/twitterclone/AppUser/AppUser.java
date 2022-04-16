@@ -1,7 +1,9 @@
 package com.example.twitterclone.AppUser;
 
+import com.example.twitterclone.Like.LkClass;
 import com.example.twitterclone.Tweet.Tweet;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
@@ -14,9 +16,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -60,6 +60,10 @@ public class AppUser {
 
     @OneToMany(mappedBy = "tweetedUser")
     private List<Tweet> tweets;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "lkngUser")
+    private List<LkClass> lkList;
 
     private String profilePicture;
 
