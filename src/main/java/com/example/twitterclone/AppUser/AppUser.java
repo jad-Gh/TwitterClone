@@ -1,5 +1,6 @@
 package com.example.twitterclone.AppUser;
 
+import com.example.twitterclone.Follower.Follower;
 import com.example.twitterclone.Like.LkClass;
 import com.example.twitterclone.Tweet.Tweet;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -64,6 +65,13 @@ public class AppUser {
     @JsonIgnore
     @OneToMany(mappedBy = "lkngUser")
     private List<LkClass> lkList;
+
+    @OneToMany(mappedBy = "following")
+    private List<Follower> followerList;
+
+    @OneToMany(mappedBy = "follower")
+    private List<Follower> followingList;
+
 
     private String profilePicture;
 
